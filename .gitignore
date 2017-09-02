@@ -1,0 +1,7 @@
+*.ec
+*~
+/auto-save-list
+/custom-variables.el
+/elpa
+/eshell
+/projectile-bookmarks.eld
