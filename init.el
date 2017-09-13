@@ -48,6 +48,8 @@
 
 (setq lisp-indent-function  'common-lisp-indent-function)
 
+(add-hook 'prog-mode-hook 'outline-minor-mode)
+
 
 (add-to-list 'load-path "~/.emacs.d/conf/"); my cinfiguration dir
 (require 'functions); custom functions
