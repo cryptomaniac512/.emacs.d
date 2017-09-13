@@ -55,6 +55,18 @@
     :bind
     ("M-p M-i" . cm-py-isort-buffer-or-region)))
 
+(use-package pytest
+    :config
+  (add-to-list 'pytest-project-root-files "pytest.ini")
+  (setq pytest-cmd-flags "-p no:sugar --create-db")
+  :bind (("C-c C-t C-a" . pytest-all)
+	 ("C-c C-t C-m" . pytest-module)
+	 ("C-c C-t C-o" . pytest-one)
+	 ("C-c C-t C-d" . pytest-directory)
+	 ("C-c C-t C-p C-a" . pytest-pdb-all)
+	 ("C-c C-t C-p C-m" . pytest-pdb-module)
+	 ("C-c C-t C-p C-o" . pytest-pdb-one)))
+
 (use-package vue-mode)
 
 (use-package stylus-mode)
