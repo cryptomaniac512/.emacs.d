@@ -1,5 +1,6 @@
 *.ec
 *~
+/anaconda-mode/
 /auto-save-list
 /custom-variables.el
 /elpa
