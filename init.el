@@ -30,7 +30,8 @@
  '(user-mail-address "cryptomaniac.512@gmail.com")
  '(user-full-name "Nikita <CryptoManiac> Sivakov")
  '(show-paren-style 'expression)
- '(compilation-scroll-output t))
+ '(compilation-scroll-output t)
+ '(backup-by-copying t))
 
 
 (require 'package)
