@@ -5,6 +5,8 @@
 ;; This file contains my plugins configuration, requirements and hooks
 ;;; Code:
 
+(use-package package-utils)
+
 (use-package nord-theme
     :config
   (load-theme 'nord t))
