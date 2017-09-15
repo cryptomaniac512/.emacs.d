@@ -1,3 +1,4 @@
+*#
 *.ec
 *~
 /anaconda-mode/
@@ -6,3 +7,5 @@
 /elpa
 /eshell
 /projectile-bookmarks.eld
+/projectile.cache
+/tramp
