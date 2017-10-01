@@ -22,6 +22,7 @@
       :config
     (global-evil-leader-mode t)
     (evil-leader/set-key "i" 'counsel-imenu)
+    (evil-leader/set-key "sl" 'sort-lines)
     (evil-leader/set-key-for-mode 'python-mode
 	"d" 'anaconda-mode-find-definitions
 	"g" 'anaconda-mode-find-assignments
