@@ -65,7 +65,7 @@
 (use-package pytest
     :config
   (add-to-list 'pytest-project-root-files "pytest.ini")
-  (setq pytest-cmd-flags "-p no:sugar --create-db")
+  (setq pytest-cmd-flags "-p no:sugar")
   :bind (("C-c C-t C-a" . pytest-all)
 	 ("C-c C-t C-m" . pytest-module)
 	 ("C-c C-t C-o" . pytest-one)
