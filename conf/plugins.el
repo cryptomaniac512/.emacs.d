@@ -85,6 +85,8 @@
 	   ("\\.markdown\\'" . markdown-mode))
     :init (setq markdown-command "multimarkdown"))
 
+(use-package yaml-mode)
+
 (use-package company
     :config
   (global-company-mode)
