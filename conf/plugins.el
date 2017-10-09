@@ -128,13 +128,18 @@
 
 (use-package counsel
     :config
-  (use-package ivy)
-  (ivy-mode t)
-  (custom-set-variables
-   '(ivy-height 15)
-   '(ivy-use-virtual-buffers nil)
-   '(ivy-use-selectable-prompt t)
-   '(enable-recursive-minibuffers))
+  (use-package ivy
+      :config
+    (ivy-mode t)
+    (custom-set-variables
+     '(ivy-height 15)
+     '(ivy-use-virtual-buffers nil)
+     '(ivy-use-selectable-prompt t)
+     '(enable-recursive-minibuffers))
+    (use-package ivy-rich
+	:config
+      (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)
+      (setq ivy-rich-abbreviate-paths t)))
   (use-package projectile
       :config
     (projectile-mode t)
