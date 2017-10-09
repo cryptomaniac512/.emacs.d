@@ -136,6 +136,11 @@
      '(ivy-use-virtual-buffers nil)
      '(ivy-use-selectable-prompt t)
      '(enable-recursive-minibuffers))
+    (use-package flx
+	:config
+      (setq ivy-re-builders-alist
+	    '((t . ivy--regex-plus)))
+      (setq ivy-initial-inputs-alist nil))
     (use-package ivy-rich
 	:config
       (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)
