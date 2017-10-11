@@ -154,6 +154,7 @@
   (use-package projectile
       :config
     (projectile-mode t)
+    (setq projectile-enable-caching t)
     (setq projectile-switch-project-action
 	  (lambda ()
 	    (if (magit-git-repo-p (projectile-project-root))
