@@ -1,8 +1,12 @@
 ;;; plugins.el --- main plugins configuration        -*- lexical-binding: t; -*-
+
 ;; Author: CryptoManiac <cryptomaniac.512@gmail.com>
 ;; Keywords: lisp
+
 ;;; Commentary:
+
 ;; This file contains my plugins configuration, requirements and hooks
+
 ;;; Code:
 
 (use-package package-utils)
