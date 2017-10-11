@@ -15,6 +15,8 @@
       inhibit-startup-echo-area-message t)
 
 (tool-bar-mode -1) ;; hide toolbar
+(menu-bar-mode -1)
+(global-set-key (kbd "C-M-m") 'menu-bar-mode)
 (setq use-dialog-box nil) ;; no GUI dialog windows
 
 (setq scroll-step 1); scrolling
