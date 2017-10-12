@@ -14,7 +14,7 @@
 (use-package nord-theme
     :config
   (custom-set-variables
-   '(nord-comment-brightness 5))
+   '(nord-comment-brightness 10))
   (load-theme 'nord t))
 
 (use-package evil
