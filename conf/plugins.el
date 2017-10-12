@@ -150,20 +150,25 @@
     (use-package ivy-rich
 	:config
       (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)
-      (setq ivy-rich-abbreviate-paths t)))
-  (use-package projectile
+      (setq ivy-rich-abbreviate-paths t)
+      (setq ivy-rich-switch-buffer-name-max-length 50)
+      (setq ivy-rich-switch-buffer-mode-max-length 20)
+      (setq ivy-rich-switch-buffer-project-max-length 30))))
+
+(use-package projectile
+    :config
+  (projectile-mode t)
+  (setq projectile-enable-caching t)
+  (setq projectile-switch-project-action
+	(lambda ()
+	  (if (magit-git-repo-p (projectile-project-root))
+	      (magit-status)
+	    (dired-other-window (projectile-project-root)))))
+  (setq projectile-completion-system 'ivy)
+  (use-package counsel-projectile
+      :after counsel
       :config
-    (projectile-mode t)
-    (setq projectile-enable-caching t)
-    (setq projectile-switch-project-action
-	  (lambda ()
-	    (if (magit-git-repo-p (projectile-project-root))
-		(magit-status)
-	      (dired-other-window (projectile-project-root)))))
-    (setq projectile-completion-system 'ivy)
-    (use-package counsel-projectile
-	:config
-      (counsel-projectile-on))))
+    (counsel-projectile-on)))
 
 (use-package magit
     :config
