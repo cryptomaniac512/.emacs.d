@@ -84,6 +84,11 @@
 
 (use-package stylus-mode)
 
+(use-package emmet-mode
+    :config
+  (add-hook 'sgml-mode-hook 'emmet-mode)
+  (add-hook 'vue-html-mode-hook 'emmet-mode))
+
 (use-package markdown-mode
     :commands (markdown-mode gfm-mode)
     :mode (("README\\.md\\'" . gfm-mode)
