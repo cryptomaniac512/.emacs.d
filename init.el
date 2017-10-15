@@ -38,6 +38,7 @@
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/")); add mepla to packages list
+(add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 (package-initialize)
 
 (require 'use-package)

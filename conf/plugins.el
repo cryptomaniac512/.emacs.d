@@ -30,10 +30,12 @@
     (evil-leader/set-key "i" 'counsel-imenu)
     (evil-leader/set-key "sl" 'sort-lines)
     (evil-leader/set-key-for-mode 'python-mode
-	"d" 'anaconda-mode-find-definitions
-	"g" 'anaconda-mode-find-assignments
-	"k" 'anaconda-mode-show-doc
-	"n" 'anaconda-mode-find-references)))
+	"D" 'xref-find-definitions-other-window
+	"d" 'xref-find-definitions
+	"g" 'xref-find-references
+	"k" 'elpy-doc
+	"n" 'elpy-occur-definitions
+	"r" 'elpy-refactor)))
 
 (use-package linum
     :config
@@ -44,29 +46,33 @@
     (custom-set-variables
      '(linum-relative-current-symbol ""))))
 
-(use-package anaconda-mode
+(use-package elpy
     :config
-  (add-hook 'python-mode-hook 'anaconda-mode)
-  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-  (remove-hook 'anaconda-mode-response-read-fail-hook
-	       'anaconda-mode-show-unreadable-response)
-  (use-package virtualenvwrapper
-      :config
-    (venv-initialize-interactive-shells)
-    (venv-initialize-eshell)
-    (setq venv-location "~/Devel/Envs/")
-    (custom-set-variables
-     '(python-environment-directory "~/Devel/Envs/")))
-  (use-package py-isort
-      :config
-    (defun cm-py-isort-buffer-or-region ()
-      "Call py-isort for region or for buffer."
-      (interactive)
-      (if (region-active-p)
-	  (py-isort-region)
-	(py-isort-buffer)))
-    :bind
-    ("M-p M-i" . cm-py-isort-buffer-or-region)))
+  (elpy-enable)
+  (setq elpy-rpc-backend "jedi")
+  (remove-hook 'elpy-modules 'elpy-module-flymake)
+  (remove-hook 'elpy-modules 'elpy-module-highlight-indentation)
+  (remove-hook 'elpy-modules 'elpy-module-pyvenv)
+  (remove-hook 'elpy-modules 'elpy-module-django))
+
+(use-package virtualenvwrapper
+    :config
+  (venv-initialize-interactive-shells)
+  (venv-initialize-eshell)
+  (setq venv-location "~/Devel/Envs/")
+  (custom-set-variables
+   '(python-environment-directory "~/Devel/Envs/")))
+
+(use-package py-isort
+    :config
+  (defun cm-py-isort-buffer-or-region ()
+    "Call py-isort for region or for buffer."
+    (interactive)
+    (if (region-active-p)
+	(py-isort-region)
+      (py-isort-buffer)))
+  :bind
+  ("M-p M-i" . cm-py-isort-buffer-or-region))
 
 (use-package pytest
     :config
