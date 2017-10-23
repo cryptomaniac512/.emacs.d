@@ -174,11 +174,15 @@
 	  (if (magit-git-repo-p (projectile-project-root))
 	      (magit-status)
 	    (dired-other-window (projectile-project-root)))))
+  ;; workaround for https://github.com/bbatsov/projectile/issues/1183
+  (setq projectile-mode-line
+	'(:eval (format " Projectile[%s]"
+		 (projectile-project-name))))
   (setq projectile-completion-system 'ivy)
   (use-package counsel-projectile
       :after counsel
       :config
-    (counsel-projectile-on)))
+      (counsel-projectile-on)))
 
 (use-package magit
     :config
