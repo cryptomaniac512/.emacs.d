@@ -104,6 +104,8 @@
 
 (use-package yaml-mode)
 
+(use-package toml-mode)
+
 (use-package company
     :config
   (global-company-mode)
