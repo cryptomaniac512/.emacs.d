@@ -106,6 +106,8 @@
 
 (use-package toml-mode)
 
+(use-package sass-mode)
+
 (use-package company
     :config
   (global-company-mode)
