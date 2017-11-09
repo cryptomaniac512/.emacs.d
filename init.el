@@ -9,7 +9,7 @@
 
 ;;; Code:
 
-(set-frame-font "Droid Sans Mono Slashed-9")
+(set-frame-font "Roboto Mono-9")
 
 (setq inhibit-startup-message t ; hide splash screen and banner
       inhibit-startup-echo-area-message t)
