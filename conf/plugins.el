@@ -101,6 +101,8 @@
 
 (use-package yaml-mode)
 
+(use-package json-mode)
+
 (use-package toml-mode)
 
 (use-package sass-mode)
