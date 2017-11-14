@@ -109,14 +109,6 @@
     :config
   (global-company-mode)
   (setq company-idle-delay 0)
-  (add-to-list 'company-backends 'company-anaconda)
-  (use-package company-quickhelp
-      :config
-    (company-quickhelp-mode t)
-    (setq company-quickhelp-use-propertized-text t)
-    (setq company-quickhelp-delay nil)
-    :bind
-    ("C-k" . company-quickhelp-manual-begin))
   :bind (("C-x C-o" . company-complete)
 	 :map company-active-map
 	 ("C-n" . company-select-next)
@@ -131,9 +123,10 @@
 (use-package popwin
     :config
   (popwin-mode t)
-  (push '("*Anaconda*" :position bottom :height 20) popwin:special-display-config)
   (push '("*Buffer List*" :position bottom :height 20) popwin:special-display-config)
+  (push '("*Completions*" :position bottom :height 24) popwin:special-display-config)
   (push '("*Flycheck errors*" :position bottom :height 24) popwin:special-display-config)
+  (push '("*Help*" :position bottom :height 24) popwin:special-display-config)
   (push '("*compilation*" :position bottom :height 24) popwin:special-display-config))
 
 (use-package flycheck
@@ -173,7 +166,7 @@
   (setq projectile-switch-project-action
 	(lambda ()
 	  (if (magit-git-repo-p (projectile-project-root))
-	      (magit-status)
+	      (magit-status-internal)
 	    (dired-other-window (projectile-project-root)))))
   ;; workaround for https://github.com/bbatsov/projectile/issues/1183
   (setq projectile-mode-line
