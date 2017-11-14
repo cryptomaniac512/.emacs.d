@@ -78,13 +78,10 @@
     :config
   (add-to-list 'pytest-project-root-files "pytest.ini")
   (setq pytest-cmd-flags "-p no:sugar")
-  :bind (("C-c C-t C-a" . pytest-all)
-	 ("C-c C-t C-m" . pytest-module)
-	 ("C-c C-t C-o" . pytest-one)
-	 ("C-c C-t C-d" . pytest-directory)
-	 ("C-c C-t C-p C-a" . pytest-pdb-all)
-	 ("C-c C-t C-p C-m" . pytest-pdb-module)
-	 ("C-c C-t C-p C-o" . pytest-pdb-one)))
+  :bind (("C-c t a" . pytest-all)
+	 ("C-c t m" . pytest-module)
+	 ("C-c t o" . pytest-one)
+	 ("C-c t d" . pytest-directory)))
 
 (use-package vue-mode)
 
