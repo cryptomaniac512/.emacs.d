@@ -55,6 +55,9 @@
 (add-hook 'prog-mode-hook 'outline-minor-mode)
 
 
+(add-to-list 'exec-path (expand-file-name "~/.local/bin"))
+
+
 (add-to-list 'load-path "~/.emacs.d/conf/"); my cinfiguration dir
 (require 'functions); custom functions
 (require 'plugins); plugins settings
