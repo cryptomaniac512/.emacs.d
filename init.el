@@ -56,6 +56,7 @@
 
 
 (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
+(add-to-list 'exec-path (expand-file-name "~/.npm-packages/bin"))
 
 
 (add-to-list 'load-path "~/.emacs.d/conf/"); my cinfiguration dir
