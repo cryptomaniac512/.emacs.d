@@ -225,5 +225,8 @@
 	   :map git-messenger-map
 	   ("m" . git-messenger:copy-message))))
 
+(use-package git-link
+    :ensure t)
+
 (provide 'plugins)
 ;;; plugins.el ends here
