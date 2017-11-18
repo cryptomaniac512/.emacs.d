@@ -228,5 +228,12 @@
 (use-package git-link
     :ensure t)
 
+(use-package flycheck-package
+    :ensure t
+    :config
+    (use-package package-lint
+	:ensure t)
+    (flycheck-package-setup))
+
 (provide 'plugins)
 ;;; plugins.el ends here
