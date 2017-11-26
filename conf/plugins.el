@@ -37,10 +37,15 @@
     (evil-leader/set-key-for-mode 'python-mode
 	"D" 'xref-find-definitions-other-window
 	"d" 'xref-find-definitions
-	"g" 'xref-find-references
+	"G" 'elpy-goto-assignment-other-window
+	"g" 'elpy-goto-assignment
 	"k" 'elpy-doc
 	"n" 'elpy-occur-definitions
-	"r" 'elpy-refactor)))
+	"r" 'elpy-refactor)
+    (evil-leader/set-key-for-mode 'elisp-mode
+	"D" 'xref-find-definitions-other-window
+	"d" 'xref-find-definitions
+	"n" 'xref-find-references)))
 
 (use-package linum
     :config
