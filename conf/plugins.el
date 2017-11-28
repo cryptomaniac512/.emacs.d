@@ -45,7 +45,10 @@
     (evil-leader/set-key-for-mode 'elisp-mode
 	"D" 'xref-find-definitions-other-window
 	"d" 'xref-find-definitions
-	"n" 'xref-find-references)))
+	"n" 'xref-find-references)
+    (evil-leader/set-key-for-mode 'rust-mode
+	"d" 'racer-find-definition
+	"k" 'racer-describe)))
 
 (use-package linum
     :config
@@ -130,11 +133,26 @@
 (use-package sass-mode
     :ensure t)
 
+(use-package rust-mode
+    :ensure t
+    :config
+    (use-package racer
+	:ensure t
+	:config
+	(add-hook 'rust-mode-hook #'racer-mode)
+	(add-hook 'racer-mode-hook #'eldoc-mode)
+	(add-hook 'racer-mode-hook #'company-mode))
+    (use-package flycheck-rust
+	:ensure t
+	:config
+	(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
+
 (use-package company
     :ensure t
     :config
   (global-company-mode)
   (setq company-idle-delay 0)
+  (setq company-tooltip-align-annotations t)
   :bind (("C-x C-o" . company-complete)
 	 :map company-active-map
 	 ("C-n" . company-select-next)
@@ -155,6 +173,7 @@
   (push '("*Completions*" :position bottom :height 24) popwin:special-display-config)
   (push '("*Flycheck errors*" :position bottom :height 24) popwin:special-display-config)
   (push '("*Help*" :position bottom :height 24) popwin:special-display-config)
+  (push '("*Racer Help*" :position bottom :height 24) popwin:special-display-config)
   (push '("*compilation*" :position bottom :height 24) popwin:special-display-config))
 
 (use-package flycheck
