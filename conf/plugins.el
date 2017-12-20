@@ -191,48 +191,51 @@
 (use-package counsel
     :ensure t
     :config
-  (use-package ivy
-      :config
-    (ivy-mode t)
-    (custom-set-variables
-     '(ivy-height 15)
-     '(ivy-use-virtual-buffers nil)
-     '(ivy-use-selectable-prompt t)
-     '(enable-recursive-minibuffers))
-    (use-package flx
-	:ensure t
+    (use-package ivy
 	:config
-      (setq ivy-re-builders-alist
-	    '((t . ivy--regex-plus)))
-      (setq ivy-initial-inputs-alist nil))
-    (use-package ivy-rich
-	:ensure t
-	:config
-      (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)
-      (setq ivy-rich-abbreviate-paths t)
-      (setq ivy-rich-switch-buffer-name-max-length 50)
-      (setq ivy-rich-switch-buffer-mode-max-length 20)
-      (setq ivy-rich-switch-buffer-project-max-length 30))))
+      (ivy-mode t)
+      (custom-set-variables
+       '(ivy-height 15)
+       '(ivy-use-virtual-buffers nil)
+       '(ivy-use-selectable-prompt t)
+       '(enable-recursive-minibuffers))
+      (use-package flx
+	  :ensure t
+	  :config
+	  (setq ivy-re-builders-alist
+		'((t . ivy--regex-plus)))
+	  (setq ivy-initial-inputs-alist nil))
+      (use-package ivy-rich
+	  :ensure t
+	  :config
+	  (ivy-set-display-transformer 'ivy-switch-buffer 'ivy-rich-switch-buffer-transformer)
+	  (setq ivy-rich-abbreviate-paths t)
+	  (setq ivy-rich-switch-buffer-name-max-length 50)
+	  (setq ivy-rich-switch-buffer-mode-max-length 20)
+	  (setq ivy-rich-switch-buffer-project-max-length 30))))
 
 (use-package projectile
     :ensure t
     :config
-  (projectile-mode t)
-  (setq projectile-switch-project-action
-	(lambda ()
-	  (if (magit-git-repo-p (projectile-project-root))
-	      (magit-status)
-	    (dired-other-window (projectile-project-root)))))
-  ;; workaround for https://github.com/bbatsov/projectile/issues/1183
-  (setq projectile-mode-line
-	'(:eval (format " Projectile[%s]"
-		 (projectile-project-name))))
-  (setq projectile-completion-system 'ivy)
-  (use-package counsel-projectile
-      :ensure t
-      :after counsel
-      :config
-      (counsel-projectile-on)))
+    (projectile-mode t)
+    ;; workaround for https://github.com/bbatsov/projectile/issues/1183
+    (setq projectile-mode-line
+	  '(:eval (format " Projectile[%s]"
+		   (projectile-project-name))))
+    (setq projectile-completion-system 'ivy)
+    (use-package counsel-projectile
+	:ensure t
+	:after counsel
+	:config
+	(counsel-projectile-mode t)
+	(defun counsel-projectile-switch-project-action (project)
+	  "Jump to a file or buffer in PROJECT."
+	  (let ((projectile-switch-project-action
+		 (lambda ()
+		   (if (magit-git-repo-p (projectile-project-root))
+		       (magit-status)
+		     (dired-other-window (projectile-project-root))))))
+	    (counsel-projectile-switch-project-by-name project)))))
 
 (use-package magit
     :ensure t
