@@ -48,7 +48,13 @@
 	"n" 'xref-find-references)
     (evil-leader/set-key-for-mode 'rust-mode
 	"d" 'racer-find-definition
-	"k" 'racer-describe)))
+	"k" 'racer-describe))
+  (use-package evil-collection
+      :ensure t
+      :custom (evil-collection-setup-minibuffer t)
+      :init (lambda ()
+	      (delete 'company evil-collection-mode-list)
+	      (evil-collection-init))))
 
 (use-package linum
     :config
