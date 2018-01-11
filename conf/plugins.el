@@ -21,6 +21,8 @@
 
 (use-package evil
     :ensure t
+    :init
+    (setq evil-want-integration nil)
     :config
   (evil-mode t)
   (define-key evil-normal-state-map "/" 'counsel-grep-or-swiper)
