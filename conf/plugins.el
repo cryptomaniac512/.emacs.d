@@ -155,6 +155,9 @@
 	:config
 	(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 
+(use-package dockerfile-mode
+    :ensure t)
+
 (use-package company
     :ensure t
     :config
