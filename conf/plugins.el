@@ -21,8 +21,6 @@
 
 (use-package evil
     :ensure t
-    :init
-    (setq evil-want-integration nil)
     :config
   (evil-mode t)
   (define-key evil-normal-state-map "/" 'counsel-grep-or-swiper)
@@ -50,13 +48,7 @@
 	"n" 'xref-find-references)
     (evil-leader/set-key-for-mode 'rust-mode
 	"d" 'racer-find-definition
-	"k" 'racer-describe))
-  (use-package evil-collection
-      :ensure t
-      :custom (evil-collection-setup-minibuffer t)
-      :init (lambda ()
-	      (delete 'company evil-collection-mode-list)
-	      (evil-collection-init))))
+	"k" 'racer-describe)))
 
 (use-package linum
     :config
