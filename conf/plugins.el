@@ -23,6 +23,10 @@
     :ensure t
     :config
   (evil-mode t)
+  (evil-define-motion evil-tide-jump-to-definition ()
+    :jump t
+    :type exclusive
+    (tide-jump-to-definition))
   (define-key evil-normal-state-map "/" 'counsel-grep-or-swiper)
   (use-package evil-surround
       :ensure t
@@ -48,7 +52,15 @@
 	"n" 'xref-find-references)
     (evil-leader/set-key-for-mode 'rust-mode
 	"d" 'racer-find-definition
-	"k" 'racer-describe)))
+	"k" 'racer-describe)
+    (evil-leader/set-key-for-mode 'typescript-mode
+	;; "d" 'tide-jump-to-definition
+	"d" 'evil-tide-jump-to-definition
+	"t" 'tide-jump-to-implementation
+	"k" 'tide-documentation-at-point
+	"n" 'tide-references
+	"r" 'tide-refactor
+	"R" 'tide-rename-symbol)))
 
 (use-package linum
     :config
@@ -150,6 +162,17 @@
 (use-package dockerfile-mode
     :ensure t)
 
+(use-package tide
+    :ensure t
+    :config
+    (add-hook 'typescript-mode-hook
+	      (lambda ()
+		(tide-setup)
+		(flycheck-mode t)
+		(eldoc-mode t)
+		(tide-hl-identifier-mode t)
+		(company-mode t))))
+
 (use-package company
     :ensure t
     :config
@@ -176,8 +199,9 @@
   (push '("*Completions*" :position bottom :height 24) popwin:special-display-config)
   (push '("*Flycheck errors*" :position bottom :height 24) popwin:special-display-config)
   (push '("*Help*" :position bottom :height 24) popwin:special-display-config)
-  (push '("*Racer Help*" :position bottom :height 24) popwin:special-display-config)
-  (push '("*compilation*" :position bottom :height 24) popwin:special-display-config))
+  (push '("*Racer Help*" :position bottom :height 20) popwin:special-display-config)
+  (push '("*compilation*" :position bottom :height 24) popwin:special-display-config)
+  (push '("*tide-documentation*" :position bottom :height 20) popwin:special-display-config))
 
 (use-package flycheck
     :ensure t
