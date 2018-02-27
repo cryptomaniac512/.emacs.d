@@ -103,15 +103,17 @@
   :bind
   ("M-p M-i" . cm-py-isort-buffer-or-region))
 
-(use-package pytest
+(use-package python-pytest
     :ensure t
     :config
-  (add-to-list 'pytest-project-root-files "pytest.ini")
-  (setq pytest-cmd-flags "-p no:sugar")
-  :bind (("C-c t a" . pytest-all)
-	 ("C-c t m" . pytest-module)
-	 ("C-c t o" . pytest-one)
-	 ("C-c t d" . pytest-directory)))
+    (setq python-pytest-buffer-name "*pytest*")
+    (setq python-pytest-project-name-in-buffer-name nil)
+    :bind (("C-c t t" . python-pytest-popup)
+	   ("C-c t a" . python-pytest)
+	   ("C-c t o" . python-pytest-function)
+	   ("C-c t f" . python-pytest-file)
+	   ("C-c t r" . python-pytest-repeat)
+	   ("C-c t l" . python-pytest-last-failed)))
 
 (use-package vue-mode
     :ensure t)
@@ -201,6 +203,7 @@
   (push '("*Help*" :position bottom :height 24) popwin:special-display-config)
   (push '("*Racer Help*" :position bottom :height 20) popwin:special-display-config)
   (push '("*compilation*" :position bottom :height 24) popwin:special-display-config)
+  (push '("*pytest*" :position bottom :height 24) popwin:special-display-config)
   (push '("*tide-documentation*" :position bottom :height 20) popwin:special-display-config))
 
 (use-package flycheck
