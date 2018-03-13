@@ -53,6 +53,9 @@
     (evil-leader/set-key-for-mode 'rust-mode
 	"d" 'racer-find-definition
 	"k" 'racer-describe)
+    (evil-leader/set-key-for-mode 'elm-mode
+	"k" 'elm-oracle-doc-at-point
+	"K" 'elm-oracle-type-at-point)
     (evil-leader/set-key-for-mode 'typescript-mode
 	;; "d" 'tide-jump-to-definition
 	"d" 'evil-tide-jump-to-definition
@@ -174,6 +177,16 @@
 		(eldoc-mode t)
 		(tide-hl-identifier-mode t)
 		(company-mode t))))
+
+(use-package elm-mode
+    :ensure t
+    :config
+    (add-to-list 'company-backends 'company-elm)
+    (setq elm-format-on-save t)
+    (use-package flycheck-elm
+	:ensure t
+	:config
+	(flycheck-elm-setup)))
 
 (use-package company
     :ensure t
