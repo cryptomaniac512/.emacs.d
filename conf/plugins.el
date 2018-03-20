@@ -255,7 +255,9 @@
 	  (setq ivy-rich-abbreviate-paths t)
 	  (setq ivy-rich-switch-buffer-name-max-length 50)
 	  (setq ivy-rich-switch-buffer-mode-max-length 20)
-	  (setq ivy-rich-switch-buffer-project-max-length 30))))
+	  (setq ivy-rich-switch-buffer-project-max-length 30))
+      (use-package wgrep
+	  :ensure t)))
 
 (use-package projectile
     :ensure t
