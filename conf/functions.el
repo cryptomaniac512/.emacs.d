@@ -31,3 +31,14 @@ http://stackoverflow.com/a/9697222/4911008"
 
 (provide 'functions)
 ;;; functions.el ends here
+
+(defun sort-words (reverse bgn end)
+  "Sort words in region alphabetically, in REVERSE if negative.
+Prefixed with negative \\[universal-argument], sorts in reverse.
+
+The variable `sort-fold-case' determines whether alphabetic case
+affects the sort order.
+
+See `sort-regexp-fields'."
+  (interactive "*P\nr")
+  (sort-regexp-fields reverse "\\w+" "\\&" bgn end))
