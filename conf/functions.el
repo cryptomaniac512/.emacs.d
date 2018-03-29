@@ -42,3 +42,5 @@ affects the sort order.
 See `sort-regexp-fields'."
   (interactive "*P\nr")
   (sort-regexp-fields reverse "\\w+" "\\&" bgn end))
+
+(global-set-key (kbd "M-p M-w") 'sort-words)
