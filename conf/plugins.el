@@ -15,55 +15,55 @@
 (use-package nord-theme
     :ensure t
     :config
-  (custom-set-variables
-   '(nord-comment-brightness 10))
-  (load-theme 'nord t))
+    (custom-set-variables
+     '(nord-comment-brightness 10))
+    (load-theme 'nord t))
 
 (use-package evil
     :ensure t
     :config
-  (evil-mode t)
-  (evil-define-motion evil-tide-jump-to-definition ()
-    :jump t
-    :type exclusive
-    (tide-jump-to-definition))
-  (define-key evil-normal-state-map "/" 'counsel-grep-or-swiper)
-  (use-package evil-surround
-      :ensure t
-      :config
-    (global-evil-surround-mode t))
-  (use-package evil-leader
-      :ensure t
-      :config
-    (global-evil-leader-mode t)
-    (evil-leader/set-key "i" 'counsel-imenu)
-    (evil-leader/set-key "sl" 'sort-lines)
-    (evil-leader/set-key-for-mode 'python-mode
-	"D" 'xref-find-definitions-other-window
-	"d" 'xref-find-definitions
-	"G" 'elpy-goto-assignment-other-window
-	"g" 'elpy-goto-assignment
-	"k" 'elpy-doc
-	"n" 'elpy-occur-definitions
-	"r" 'elpy-refactor)
-    (evil-leader/set-key-for-mode 'elisp-mode
-	"D" 'xref-find-definitions-other-window
-	"d" 'xref-find-definitions
-	"n" 'xref-find-references)
-    (evil-leader/set-key-for-mode 'rust-mode
-	"d" 'racer-find-definition
-	"k" 'racer-describe)
-    (evil-leader/set-key-for-mode 'elm-mode
-	"k" 'elm-oracle-doc-at-point
-	"K" 'elm-oracle-type-at-point)
-    (evil-leader/set-key-for-mode 'typescript-mode
-	;; "d" 'tide-jump-to-definition
-	"d" 'evil-tide-jump-to-definition
-	"t" 'tide-jump-to-implementation
-	"k" 'tide-documentation-at-point
-	"n" 'tide-references
-	"r" 'tide-refactor
-	"R" 'tide-rename-symbol)))
+    (evil-mode t)
+    (evil-define-motion evil-tide-jump-to-definition ()
+      :jump t
+      :type exclusive
+      (tide-jump-to-definition))
+    (define-key evil-normal-state-map "/" 'counsel-grep-or-swiper)
+    (use-package evil-surround
+	:ensure t
+	:config
+	(global-evil-surround-mode t))
+    (use-package evil-leader
+	:ensure t
+	:config
+	(global-evil-leader-mode t)
+	(evil-leader/set-key "i" 'counsel-imenu)
+	(evil-leader/set-key "sl" 'sort-lines)
+	(evil-leader/set-key-for-mode 'python-mode
+	    "D" 'xref-find-definitions-other-window
+	    "d" 'xref-find-definitions
+	    "G" 'elpy-goto-assignment-other-window
+	    "g" 'elpy-goto-assignment
+	    "k" 'elpy-doc
+	    "n" 'elpy-occur-definitions
+	    "r" 'elpy-refactor)
+	(evil-leader/set-key-for-mode 'elisp-mode
+	    "D" 'xref-find-definitions-other-window
+	    "d" 'xref-find-definitions
+	    "n" 'xref-find-references)
+	(evil-leader/set-key-for-mode 'rust-mode
+	    "d" 'racer-find-definition
+	    "k" 'racer-describe)
+	(evil-leader/set-key-for-mode 'elm-mode
+	    "k" 'elm-oracle-doc-at-point
+	    "K" 'elm-oracle-type-at-point)
+	(evil-leader/set-key-for-mode 'typescript-mode
+	    ;; "d" 'tide-jump-to-definition
+	    "d" 'evil-tide-jump-to-definition
+	    "t" 'tide-jump-to-implementation
+	    "k" 'tide-documentation-at-point
+	    "n" 'tide-references
+	    "r" 'tide-refactor
+	    "R" 'tide-rename-symbol)))
 
 (use-package linum
     :config
@@ -71,40 +71,40 @@
   (use-package linum-relative
       :ensure t
       :config
-    (linum-relative-global-mode t)
-    (custom-set-variables
-     '(linum-relative-current-symbol ""))))
+      (linum-relative-global-mode t)
+      (custom-set-variables
+       '(linum-relative-current-symbol ""))))
 
 (use-package elpy
     :ensure t
     :config
-  (elpy-enable)
-  (setq elpy-rpc-backend "jedi")
-  (remove-hook 'elpy-modules 'elpy-module-flymake)
-  (remove-hook 'elpy-modules 'elpy-module-highlight-indentation)
-  (remove-hook 'elpy-modules 'elpy-module-pyvenv)
-  (remove-hook 'elpy-modules 'elpy-module-django))
+    (elpy-enable)
+    (setq elpy-rpc-backend "jedi")
+    (remove-hook 'elpy-modules 'elpy-module-flymake)
+    (remove-hook 'elpy-modules 'elpy-module-highlight-indentation)
+    (remove-hook 'elpy-modules 'elpy-module-pyvenv)
+    (remove-hook 'elpy-modules 'elpy-module-django))
 
 (use-package virtualenvwrapper
     :ensure t
     :config
-  (venv-initialize-interactive-shells)
-  (venv-initialize-eshell)
-  (setq venv-location "~/Devel/Envs/")
-  (custom-set-variables
-   '(python-environment-directory "~/Devel/Envs/")))
+    (venv-initialize-interactive-shells)
+    (venv-initialize-eshell)
+    (setq venv-location "~/Devel/Envs/")
+    (custom-set-variables
+     '(python-environment-directory "~/Devel/Envs/")))
 
 (use-package py-isort
     :ensure t
     :config
-  (defun cm-py-isort-buffer-or-region ()
-    "Call py-isort for region or for buffer."
-    (interactive)
-    (if (region-active-p)
-	(py-isort-region)
-      (py-isort-buffer)))
-  :bind
-  ("M-p M-i" . cm-py-isort-buffer-or-region))
+    (defun cm-py-isort-buffer-or-region ()
+      "Call py-isort for region or for buffer."
+      (interactive)
+      (if (region-active-p)
+	  (py-isort-region)
+	(py-isort-buffer)))
+    :bind
+    ("M-p M-i" . cm-py-isort-buffer-or-region))
 
 (use-package python-pytest
     :ensure t
@@ -127,8 +127,8 @@
 (use-package emmet-mode
     :ensure t
     :config
-  (add-hook 'sgml-mode-hook 'emmet-mode)
-  (add-hook 'vue-html-mode-hook 'emmet-mode))
+    (add-hook 'sgml-mode-hook 'emmet-mode)
+    (add-hook 'vue-html-mode-hook 'emmet-mode))
 
 (use-package markdown-mode
     :ensure t
@@ -193,38 +193,38 @@
 (use-package company
     :ensure t
     :config
-  (global-company-mode)
-  (setq company-idle-delay 0)
-  (setq company-tooltip-align-annotations t)
-  :bind (("C-x C-o" . company-complete)
-	 :map company-active-map
-	 ("C-n" . company-select-next)
-	 ("C-p" . company-select-previous)
-	 ("M-k" . company-show-doc-buffer)
-	 ("C-d" . company-show-location)))
+    (global-company-mode)
+    (setq company-idle-delay 0)
+    (setq company-tooltip-align-annotations t)
+    :bind (("C-x C-o" . company-complete)
+	   :map company-active-map
+	   ("C-n" . company-select-next)
+	   ("C-p" . company-select-previous)
+	   ("M-k" . company-show-doc-buffer)
+	   ("C-d" . company-show-location)))
 
 (use-package editorconfig
     :ensure t
     :config
-  (editorconfig-mode t))
+    (editorconfig-mode t))
 
 (use-package popwin
     :ensure t
     :config
-  (popwin-mode t)
-  (push '("*Buffer List*" :position bottom :height 20) popwin:special-display-config)
-  (push '("*Completions*" :position bottom :height 24) popwin:special-display-config)
-  (push '("*Flycheck errors*" :position bottom :height 24) popwin:special-display-config)
-  (push '("*Help*" :position bottom :height 24) popwin:special-display-config)
-  (push '("*Racer Help*" :position bottom :height 20) popwin:special-display-config)
-  (push '("*compilation*" :position bottom :height 24) popwin:special-display-config)
-  (push '("*pytest*" :position bottom :height 24) popwin:special-display-config)
-  (push '("*tide-documentation*" :position bottom :height 20) popwin:special-display-config))
+    (popwin-mode t)
+    (push '("*Buffer List*" :position bottom :height 20) popwin:special-display-config)
+    (push '("*Completions*" :position bottom :height 24) popwin:special-display-config)
+    (push '("*Flycheck errors*" :position bottom :height 24) popwin:special-display-config)
+    (push '("*Help*" :position bottom :height 24) popwin:special-display-config)
+    (push '("*Racer Help*" :position bottom :height 20) popwin:special-display-config)
+    (push '("*compilation*" :position bottom :height 24) popwin:special-display-config)
+    (push '("*pytest*" :position bottom :height 24) popwin:special-display-config)
+    (push '("*tide-documentation*" :position bottom :height 20) popwin:special-display-config))
 
 (use-package flycheck
     :ensure t
     :config
-  (global-flycheck-mode t))
+    (global-flycheck-mode t))
 
 (use-package yasnippet
     :ensure t
@@ -289,15 +289,15 @@
     :config
     (use-package evil-magit
 	:ensure t)
-  (use-package git-messenger
-      :ensure t
-      :config
-    (custom-set-variables
-     '(git-messenger:show-detail t)
-     '(git-messenger:use-magit-popup t))
-    :bind (("C-x p v" . git-messenger:popup-message)
-	   :map git-messenger-map
-	   ("m" . git-messenger:copy-message))))
+    (use-package git-messenger
+	:ensure t
+	:config
+	(custom-set-variables
+	 '(git-messenger:show-detail t)
+	 '(git-messenger:use-magit-popup t))
+	:bind (("C-x p v" . git-messenger:popup-message)
+	       :map git-messenger-map
+	       ("m" . git-messenger:copy-message))))
 
 (use-package git-link
     :ensure t)
