@@ -186,7 +186,9 @@
     (use-package flycheck-elm
 	:ensure t
 	:config
-	(flycheck-elm-setup)))
+	(flycheck-elm-setup))
+    :bind
+    ("M-p M-i" . elm-sort-imports))
 
 (use-package company
     :ensure t
