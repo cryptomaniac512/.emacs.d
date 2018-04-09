@@ -103,8 +103,9 @@
       (if (region-active-p)
 	  (py-isort-region)
 	(py-isort-buffer)))
-    :bind
-    ("M-p M-i" . cm-py-isort-buffer-or-region))
+    (add-hook 'python-mode-hook
+	      (lambda ()
+		(define-key python-mode-map (kbd "M-p M-i") 'cm-py-isort-buffer-or-region))))
 
 (use-package python-pytest
     :ensure t
@@ -187,8 +188,9 @@
 	:ensure t
 	:config
 	(flycheck-elm-setup))
-    :bind
-    ("M-p M-i" . elm-sort-imports))
+    (add-hook 'elm-mode-hook
+	      (lambda ()
+		(define-key elm-mode-map (kbd "M-p M-i") 'elm-sort-imports))))
 
 (use-package company
     :ensure t
