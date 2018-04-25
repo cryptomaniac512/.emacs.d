@@ -129,7 +129,8 @@
     :ensure t
     :config
     (add-hook 'sgml-mode-hook 'emmet-mode)
-    (add-hook 'vue-html-mode-hook 'emmet-mode))
+    (add-hook 'vue-html-mode-hook 'emmet-mode)
+    (add-hook 'web-mode-hook 'emmet-mode))
 
 (use-package markdown-mode
     :ensure t
@@ -171,13 +172,17 @@
 (use-package tide
     :ensure t
     :config
-    (add-hook 'typescript-mode-hook
+    (add-hook 'typescript-mode-hook #'setup-tide-mode))
+
+(use-package web-mode
+    :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
+    (add-hook 'web-mode-hook
 	      (lambda ()
-		(tide-setup)
-		(flycheck-mode t)
-		(eldoc-mode t)
-		(tide-hl-identifier-mode t)
-		(company-mode t))))
+		(when (string-equal "tsx" (file-name-extension buffer-file-name))
+		  (setup-tide-mode))))
+    (flycheck-add-mode 'typescript-tslint 'web-mode))
 
 (use-package elm-mode
     :ensure t

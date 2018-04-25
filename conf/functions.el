@@ -44,3 +44,11 @@ See `sort-regexp-fields'."
 
 (provide 'functions)
 ;;; functions.el ends here
+
+(defun setup-tide-mode ()
+  (interactive)
+  (tide-setup)
+  (flycheck-mode t)
+  (eldoc-mode t)
+  (tide-hl-identifier-mode t)
+  (company-mode t))
