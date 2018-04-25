@@ -63,6 +63,14 @@
 	    "k" 'tide-documentation-at-point
 	    "n" 'tide-references
 	    "r" 'tide-refactor
+	    "R" 'tide-rename-symbol)
+	(evil-leader/set-key-for-mode 'web-mode
+	    ;; "d" 'tide-jump-to-definition
+	    "d" 'evil-tide-jump-to-definition
+	    "t" 'tide-jump-to-implementation
+	    "k" 'tide-documentation-at-point
+	    "n" 'tide-references
+	    "r" 'tide-refactor
 	    "R" 'tide-rename-symbol)))
 
 (use-package linum
