@@ -27,6 +27,10 @@
       :jump t
       :type exclusive
       (tide-jump-to-definition))
+    (evil-define-motion evil-tide-jump-to-implementation ()
+      :jump t
+      :type exclusive
+      (tide-jump-to-implementation))
     (define-key evil-normal-state-map "/" 'counsel-grep-or-swiper)
     (use-package evil-surround
 	:ensure t
@@ -57,17 +61,15 @@
 	    "k" 'elm-oracle-doc-at-point
 	    "K" 'elm-oracle-type-at-point)
 	(evil-leader/set-key-for-mode 'typescript-mode
-	    ;; "d" 'tide-jump-to-definition
 	    "d" 'evil-tide-jump-to-definition
-	    "t" 'tide-jump-to-implementation
+	    "t" 'evil-tide-jump-to-implementation
 	    "k" 'tide-documentation-at-point
 	    "n" 'tide-references
 	    "r" 'tide-refactor
 	    "R" 'tide-rename-symbol)
 	(evil-leader/set-key-for-mode 'web-mode
-	    ;; "d" 'tide-jump-to-definition
 	    "d" 'evil-tide-jump-to-definition
-	    "t" 'tide-jump-to-implementation
+	    "t" 'evil-tide-jump-to-implementation
 	    "k" 'tide-documentation-at-point
 	    "n" 'tide-references
 	    "r" 'tide-refactor
