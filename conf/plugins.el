@@ -191,7 +191,8 @@
     (add-hook 'web-mode-hook
 	      (lambda ()
 		(when (string-equal "tsx" (file-name-extension buffer-file-name))
-		  (setup-tide-mode))))
+		  (setup-tide-mode))
+		(define-key web-mode-map (kbd "M-p M-i") 'tide-organize-imports)))
     (flycheck-add-mode 'typescript-tslint 'web-mode))
 
 (use-package elm-mode
