@@ -29,8 +29,8 @@
 (setq custom-file "~/.emacs.d/custom-variables.el"); Custom code file
 (load custom-file)
 (custom-set-variables
- '(user-mail-address "cryptomaniac.512@gmail.com")
- '(user-full-name "Nikita <CryptoManiac> Sivakov")
+ '(user-mail-address "sivakov512@gmail.com")
+ '(user-full-name "Nikita Sivakov")
  '(show-paren-style 'expression)
  '(compilation-scroll-output t)
  '(backup-by-copying t))
