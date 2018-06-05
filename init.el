@@ -51,6 +51,7 @@
 (show-paren-mode t) ;; highlight pair brackets
 (electric-pair-mode t) ;; auto-close pair "brackets"
 (global-display-line-numbers-mode t)
+(column-number-mode t)
 
 (setq lisp-indent-function  'common-lisp-indent-function)
 
