@@ -75,16 +75,6 @@
 	    "r" 'tide-refactor
 	    "R" 'tide-rename-symbol)))
 
-(use-package linum
-    :config
-  (column-number-mode t)
-  (use-package linum-relative
-      :ensure t
-      :config
-      (linum-relative-global-mode t)
-      (custom-set-variables
-       '(linum-relative-current-symbol ""))))
-
 (use-package elpy
     :ensure t
     :config

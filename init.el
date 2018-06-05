@@ -33,6 +33,7 @@
  '(user-full-name "Nikita Sivakov")
  '(show-paren-style 'expression)
  '(compilation-scroll-output t)
+ '(display-line-numbers-type 'visual)
  '(backup-by-copying t))
 
 
@@ -49,6 +50,7 @@
 
 (show-paren-mode t) ;; highlight pair brackets
 (electric-pair-mode t) ;; auto-close pair "brackets"
+(global-display-line-numbers-mode t)
 
 (setq lisp-indent-function  'common-lisp-indent-function)
 
