@@ -32,6 +32,8 @@
       :type exclusive
       (tide-jump-to-implementation))
     (define-key evil-normal-state-map "/" 'counsel-grep-or-swiper)
+    (evil-add-command-properties #'racer-find-definition :jump t)
+    (evil-add-command-properties #'racer-find-definition-other-window :jump t)
     (use-package evil-surround
 	:ensure t
 	:config
@@ -56,6 +58,7 @@
 	    "n" 'xref-find-references)
 	(evil-leader/set-key-for-mode 'rust-mode
 	    "d" 'racer-find-definition
+	    "D" 'racer-find-definition-other-window
 	    "k" 'racer-describe)
 	(evil-leader/set-key-for-mode 'elm-mode
 	    "k" 'elm-oracle-doc-at-point
