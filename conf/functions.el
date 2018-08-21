@@ -42,9 +42,6 @@ See `sort-regexp-fields'."
 
 (global-set-key (kbd "M-p M-w") 'sort-words)
 
-(provide 'functions)
-;;; functions.el ends here
-
 (defun setup-tide-mode ()
   (interactive)
   (tide-setup)
@@ -52,3 +49,6 @@ See `sort-regexp-fields'."
   (eldoc-mode t)
   (tide-hl-identifier-mode t)
   (company-mode t))
+
+(provide 'functions)
+;;; functions.el ends here
