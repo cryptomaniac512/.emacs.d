@@ -172,21 +172,39 @@
 (use-package dockerfile-mode
     :ensure t)
 
+(use-package js2-mode
+    :ensure t
+    :config
+    (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode)))
+
 (use-package tide
     :ensure t
     :config
-    (add-hook 'typescript-mode-hook #'setup-tide-mode))
+    (add-hook 'typescript-mode-hook #'setup-tide-mode)
+    (add-hook 'js2-mode-hook #'setup-tide-mode)
+
+    (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
+    (flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append))
 
 (use-package web-mode
     :ensure t
     :config
+    (flycheck-add-mode 'typescript-tslint 'web-mode)
+    (flycheck-add-mode 'javascript-eslint 'web-mode)
+
     (add-to-list 'auto-mode-alist '("\\.tsx\\'" . web-mode))
     (add-hook 'web-mode-hook
 	      (lambda ()
 		(when (string-equal "tsx" (file-name-extension buffer-file-name))
 		  (setup-tide-mode))
 		(define-key web-mode-map (kbd "M-p M-i") 'tide-organize-imports)))
-    (flycheck-add-mode 'typescript-tslint 'web-mode))
+
+    (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+    (add-hook 'web-mode-hook
+	      (lambda ()
+		(when (string-equal "jsx" (file-name-extension buffer-file-name))
+		  (setq flycheck-disabled-checkers '(jsx-tide tsx-tide))
+		  (setup-tide-mode)))))
 
 (use-package elm-mode
     :ensure t
