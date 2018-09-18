@@ -70,6 +70,13 @@
 	    "n" 'tide-references
 	    "r" 'tide-refactor
 	    "R" 'tide-rename-symbol)
+	(evil-leader/set-key-for-mode 'js2-mode
+	    "d" 'evil-tide-jump-to-definition
+	    "t" 'evil-tide-jump-to-implementation
+	    "k" 'tide-documentation-at-point
+	    "n" 'tide-references
+	    "r" 'tide-refactor
+	    "R" 'tide-rename-symbol)
 	(evil-leader/set-key-for-mode 'web-mode
 	    "d" 'evil-tide-jump-to-definition
 	    "t" 'evil-tide-jump-to-implementation
