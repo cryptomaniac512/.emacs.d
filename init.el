@@ -19,6 +19,8 @@
 (global-set-key (kbd "C-M-m") 'menu-bar-mode)
 (setq use-dialog-box nil) ;; no GUI dialog windows
 
+(setq ring-bell-function 'ignore)
+
 (setq scroll-step 1); scrolling
 (setq scroll-margin 5)
 (scroll-bar-mode -1); disable scroll bar
