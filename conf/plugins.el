@@ -42,6 +42,7 @@
 	:ensure t
 	:config
 	(global-evil-leader-mode t)
+	(evil-leader/set-leader "'")
 	(evil-leader/set-key "i" 'counsel-imenu)
 	(evil-leader/set-key "sl" 'sort-lines)
 	(evil-leader/set-key-for-mode 'python-mode
