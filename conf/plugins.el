@@ -204,15 +204,14 @@
     (add-hook 'web-mode-hook
 	      (lambda ()
 		(when (string-equal "tsx" (file-name-extension buffer-file-name))
-		  (setup-tide-mode))
-		(define-key web-mode-map (kbd "M-p M-i") 'tide-organize-imports)))
+		  (setup-tide-mode))))
 
     (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
     (add-hook 'web-mode-hook
 	      (lambda ()
 		(when (string-equal "jsx" (file-name-extension buffer-file-name))
-		  (setq flycheck-disabled-checkers '(jsx-tide tsx-tide))
-		  (setup-tide-mode)))))
+		  (setup-tide-mode)
+		  (setq flycheck-disabled-checkers '(tsx-tide))))))
 
 (use-package elm-mode
     :ensure t

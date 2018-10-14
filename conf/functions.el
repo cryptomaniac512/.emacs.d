@@ -48,7 +48,8 @@ See `sort-regexp-fields'."
   (flycheck-mode t)
   (eldoc-mode t)
   (tide-hl-identifier-mode t)
-  (company-mode t))
+  (company-mode t)
+  (define-key web-mode-map (kbd "M-p M-i") 'tide-organize-imports))
 
 (provide 'functions)
 ;;; functions.el ends here
