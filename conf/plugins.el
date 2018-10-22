@@ -189,10 +189,7 @@
     :ensure t
     :config
     (add-hook 'typescript-mode-hook #'setup-tide-mode)
-    (add-hook 'js2-mode-hook #'setup-tide-mode)
-
-    (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
-    (flycheck-add-next-checker 'javascript-eslint 'jsx-tide 'append))
+    (add-hook 'js2-mode-hook #'setup-tide-mode))
 
 (use-package web-mode
     :ensure t
