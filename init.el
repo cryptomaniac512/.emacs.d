@@ -36,7 +36,8 @@
  '(show-paren-style 'expression)
  '(compilation-scroll-output t)
  '(display-line-numbers-type 'visual)
- '(backup-by-copying t))
+ '(backup-by-copying t)
+ '(indent-tabs-mode nil))
 
 
 (require 'package)
