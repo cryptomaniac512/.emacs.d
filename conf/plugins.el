@@ -118,22 +118,7 @@
 	      (lambda ()
 		(define-key python-mode-map (kbd "M-p M-i") 'cm-py-isort-buffer-or-region))))
 
-(use-package python-pytest
-    :ensure t
-    :config
-    (setq python-pytest-buffer-name "*pytest*")
-    (setq python-pytest-project-name-in-buffer-name nil)
-    :bind (("C-c t t" . python-pytest-popup)
-	   ("C-c t a" . python-pytest)
-	   ("C-c t o" . python-pytest-function)
-	   ("C-c t f" . python-pytest-file)
-	   ("C-c t r" . python-pytest-repeat)
-	   ("C-c t l" . python-pytest-last-failed)))
-
 (use-package vue-mode
-    :ensure t)
-
-(use-package stylus-mode
     :ensure t)
 
 (use-package emmet-mode
@@ -171,7 +156,26 @@
 	:config
 	(add-hook 'rust-mode-hook #'racer-mode)
 	(add-hook 'racer-mode-hook #'eldoc-mode)
-	(add-hook 'racer-mode-hook #'company-mode))
+	(add-hook 'racer-mode-hook #'company-mode)
+
+	(defun racer-complete-at-point ()
+	  "Complete the symbol at point."
+	  (let* ((ppss (syntax-ppss))
+		 (in-string (nth 3 ppss))
+		 (in-comment (nth 4 ppss)))
+	    (when (and
+		   (not in-string)
+		   (or (not in-comment) racer-complete-in-comments))
+	      (let* ((bounds (bounds-of-thing-at-point 'symbol))
+		     (beg (or (car bounds) (point)))
+		     (end (or (cdr bounds) (point))))
+		(list beg end
+		      (completion-table-dynamic #'racer-complete)
+		      :annotation-function #'racer-complete--annotation
+		      :company-prefix-length (racer-complete--prefix-p beg end)
+		      :company-docsig #'racer-complete--docsig
+		      :company-doc-buffer #'racer--describe
+		      :company-location #'racer-complete--location))))))
     (use-package flycheck-rust
 	:ensure t
 	:config
@@ -201,6 +205,7 @@
     (add-hook 'web-mode-hook
 	      (lambda ()
 		(when (string-equal "tsx" (file-name-extension buffer-file-name))
+		  (define-key web-mode-map (kbd "C-c C-f") 'eslint-fix)
 		  (setup-tide-mode))))
 
     (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
@@ -208,6 +213,7 @@
 	      (lambda ()
 		(when (string-equal "jsx" (file-name-extension buffer-file-name))
 		  (setup-tide-mode)
+		  (define-key web-mode-map (kbd "C-c C-f") 'eslint-fix)
 		  (setq flycheck-disabled-checkers '(tsx-tide))))))
 
 (use-package elm-mode
@@ -248,6 +254,7 @@
     (push '("*Buffer List*" :position bottom :height 20) popwin:special-display-config)
     (push '("*Completions*" :position bottom :height 24) popwin:special-display-config)
     (push '("*Flycheck errors*" :position bottom :height 24) popwin:special-display-config)
+    (push '("*Flycheck error messages*" :position bottom :height 24) popwin:special-display-config)
     (push '("*Help*" :position bottom :height 24) popwin:special-display-config)
     (push '("*Racer Help*" :position bottom :height 20) popwin:special-display-config)
     (push '("*compilation*" :position bottom :height 24) popwin:special-display-config)
@@ -336,13 +343,6 @@
 
 (use-package git-link
     :ensure t)
-
-(use-package flycheck-package
-    :ensure t
-    :config
-    (use-package package-lint
-	:ensure t)
-    (flycheck-package-setup))
 
 (provide 'plugins)
 ;;; plugins.el ends here
