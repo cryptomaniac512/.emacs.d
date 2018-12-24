@@ -34,6 +34,23 @@
     :hook
     ((after-init . ivy-mode))))
 
+(use-package projectile
+  :straight t
+  :hook
+  ((after-init . projectile-mode))
+  :init
+  (setq projectile-completion-system 'ivy)
+  :bind
+  (:map projectile-mode-map
+	("C-c p" . projectile-command-map))
+  :config
+  (defun sn-projectile-magit-or-dired ()
+    "Open magit or dired in project."
+    (if (magit-git-repo-p (projectile-project-root))
+	(magit-status)
+      (dired-other-window (projectile-project-root))))
+  (setq projectile-switch-project-action #'sn-projectile-magit-or-dired))
+
 (use-package magit
   :straight t
   :config
