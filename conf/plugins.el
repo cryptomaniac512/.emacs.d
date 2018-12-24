@@ -21,6 +21,14 @@
 
 (straight-use-package 'use-package)
 
+(use-package nord-theme
+  :straight t
+  :hook
+  ((after-init . (lambda ()
+		   (load-theme 'nord t))))
+  :config
+  (setq-default nord-comment-brightness 10))
+
 (use-package evil
   :straight t
   :hook
