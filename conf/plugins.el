@@ -21,5 +21,24 @@
 
 (straight-use-package 'use-package)
 
+(use-package evil
+  :straight t
+  :hook
+  ((after-init . evil-mode)))
+
+(use-package counsel
+  :straight t
+  :config
+  (use-package ivy
+    :straight t
+    :hook
+    ((after-init . ivy-mode))))
+
+(use-package magit
+  :straight t
+  :config
+  (use-package evil-magit
+    :straight t))
+
 (provide 'plugins)
 ;;; plugins.el ends here
