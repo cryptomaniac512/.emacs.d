@@ -44,20 +44,23 @@
 
 (use-package projectile
   :straight t
-  :hook
-  ((after-init . projectile-mode))
-  :init
-  (setq projectile-completion-system 'ivy)
-  :bind
-  (:map projectile-mode-map
-	("C-c p" . projectile-command-map))
+  :hook ((after-init . projectile-mode))
+  :init (setq projectile-completion-system 'ivy)
+  :bind (:map projectile-mode-map ("C-c p" . projectile-command-map))
   :config
+  (use-package counsel-projectile
+    :straight t
+    :after counsel
+    :config
+    (counsel-projectile-mode))
   (defun sn-projectile-magit-or-dired ()
-    "Open magit or dired in project."
-    (if (magit-git-repo-p (projectile-project-root))
-	(magit-status)
+    "Open magit or dired in PROJECT."
+    (if (magit-git-repo-p (projectile-project-root)) (magit-status)
       (dired-other-window (projectile-project-root))))
-  (setq projectile-switch-project-action #'sn-projectile-magit-or-dired))
+  (setq-default projectile-switch-project-action #'sn-projectile-magit-or-dired)
+  (defun counsel-projectile-switch-project-action (project)
+    (counsel-projectile-switch-project-by-name project)))
+  
 
 (use-package magit
   :straight t
